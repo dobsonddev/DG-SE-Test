@@ -7,9 +7,9 @@ import {ThemeProvider} from "@/context/theme-provider";
 import {NavBar} from "@/components/navbar";
 
 export const metadata: Metadata = {
-    title: "DHL API Test",
+    title: "SE Technical Exercise",
     description:
-        "Leveraging DHL's \"Shipment Tracking-Unified\" API in order to receive shipment tracking information.",
+        "Next.js app utilizing DHL's API in order to request, receive, and display DHL shipment tracking information and service point locations.",
 };
 
 export default function RootLayout({
