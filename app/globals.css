@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "./prism.css";
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+
+
+/* Rotate Animation */
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.icon-rotate {
+  animation: rotate 2s linear infinite;
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.9;
+  }
+}
+
+.icon-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Tada Animation */
+@keyframes tada {
+  0%, 20%, 100% {
+    transform: scale(1) translateY(0);
+  }
+  5% {
+    transform: scale(0.9) translateY(0); /* Slightly smaller and raised up */
+  }
+  30% {
+    transform: scale(1.2) translateY(-3px) rotate(-4deg); /* Bigger and start wiggle */
+  }
+  40% {
+    transform: scale(1.2) translateY(-3px) rotate(4deg); /* Continue wiggle */
+  }
+  50% {
+    transform: scale(1.2) translateY(-3px) rotate(-4deg); /* Continue wiggle */
+  }
+  60% {
+    transform: scale(1.2) translateY(-3px) rotate(4deg); /* Continue wiggle */
+  }
+  70% {
+    transform: scale(1.2) translateY(-3px) rotate(-4deg); /* Continue wiggle */
+  }
+  80% {
+    transform: scale(1.1) translateY(-3px) rotate(3deg); /* Continue wiggle */
+  }
+  90% {
+    transform: scale(1) translateY(0); /* Back to normal size */
+  }
+}
+
+.icon-tada {
+  animation: tada 3s ease-in-out infinite; /* Adjusted duration for periodic effect */
+}
+
+.hide-default-cursor {
+  cursor: none;
+}
+
+
+
