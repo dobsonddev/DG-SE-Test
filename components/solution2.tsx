@@ -43,11 +43,30 @@ This component allows users to find DHL service points within a specified radius
     }
 ];
 
+interface ServicePoint {
+    name: string;
+    place: {
+        address: {
+            streetAddress: string;
+            postalCode: string;
+            addressLocality: string;
+            countryCode: string;
+        };
+    };
+    distance: number;
+    openingHours: Array<{
+        dayOfWeek: string;
+        opens: string;
+        closes: string;
+    }>;
+    serviceTypes: string[];
+}
+
 export const Solution2 = () => {
     const [countryCode, setCountryCode] = useState('');
     const [city, setCity] = useState('');
     const [radius, setRadius] = useState('');
-    const [servicePoints, setServicePoints] = useState([]);
+    const [servicePoints, setServicePoints] = useState<ServicePoint[]>([]);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
@@ -59,7 +78,7 @@ export const Solution2 = () => {
             const response = await axios.get('/api/service-points', {
                 params: { countryCode, city, radius },
             });
-            setServicePoints(response.data.locations);
+            setServicePoints(response.data.locations as ServicePoint[]);
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 const status = error.response?.data.status;
@@ -80,107 +99,107 @@ export const Solution2 = () => {
     };
 
     return (
-            <div className="max-w-2xl backdrop-blur-lg mx-auto antialiased pt-4 relative">
-                {dummyContent.map((item, index) => (
-                    <div key={`content-${index}`} className="mb-20 rounded-md p-4">
-                        <div className="flex flex-row items-center space-x-4 pb-4">
-                            <h2 className="bg-black text-white dark:bg-white dark:text-black rounded-full text-md w-fit px-4 py-1">
-                                {item.title}
-                            </h2>
-                        </div>
-                        <div className="mb-6 py-10">
-                            <input
-                                type="text"
-                                placeholder="Country Code"
-                                value={countryCode}
-                                onChange={(e) => setCountryCode(e.target.value)}
-                                className="border border-gray-400 p-2 rounded w-full mb-4"
-                            />
-                            <input
-                                type="text"
-                                placeholder="City"
-                                value={city}
-                                onChange={(e) => setCity(e.target.value)}
-                                className="border border-gray-400 p-2 rounded w-full mb-4"
-                            />
-                            <input
-                                type="text"
-                                placeholder="Radius (optional)"
-                                value={radius}
-                                onChange={(e) => setRadius(e.target.value)}
-                                className="border border-gray-400 p-2 rounded w-full mb-4"
-                            />
-                            <button
-                                onClick={fetchServicePoints}
-                                className="bg-blue-500 text-white px-4 py-2 rounded"
-                                disabled={loading}
-                            >
-                                {loading ? (
-                                    <div className="flex items-center">
-                                        <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
-                                            <circle
-                                                className="opacity-25"
-                                                cx="12"
-                                                cy="12"
-                                                r="10"
-                                                stroke="currentColor"
-                                                strokeWidth="4"
-                                            ></circle>
-                                            <path
-                                                className="opacity-75"
-                                                fill="currentColor"
-                                                d="M4 12a8 8 0 018-8V0C6.477 0 0 6.477 0 12h4z"
-                                            ></path>
-                                        </svg>
-                                        Loading...
-                                    </div>
-                                ) : (
-                                    'Search'
-                                )}
-                            </button>
-                            {error && <p className="mt-4 text-red-500">{error}</p>}
-                            {servicePoints.length > 0 && (
-                                <div className="mt-4 bg-gray-100 p-4 rounded">
-                                    <h3 className="text-lg font-semibold">Service Points</h3>
-                                    <ul>
-                                        {servicePoints.map((point, index) => (
-                                            <li key={index}>
-                                                <div
-                                                    className="cursor-pointer flex justify-between items-center"
-                                                    onClick={() => toggleDetails(index)}
-                                                >
-                                                    <span>{point.name || 'Unnamed Location'} - {point.place.address?.addressLocality}</span>
-                                                    <span>{expandedIndex === index ? '▲' : '▼'}</span>
-                                                </div>
-                                                {expandedIndex === index && (
-                                                    <div className="pl-4">
-                                                        <p><strong>Address:</strong> {point.place.address.streetAddress}, {point.place.address.postalCode} {point.place.address.addressLocality}, {point.place.address.countryCode}</p>
-                                                        <p><strong>Distance:</strong> {point.distance} meters</p>
-                                                        <p><strong>Opening Hours:</strong></p>
-                                                        <ul>
-                                                            {point.openingHours.map((hours: any, idx: number) => (
-                                                                <li key={idx}>- {hours.dayOfWeek}: {hours.opens} - {hours.closes}</li>
-                                                            ))}
-                                                        </ul>
-                                                        <p><strong>Service Types:</strong></p>
-                                                        <ul>
-                                                            {point.serviceTypes.map((type: string, idx: number) => (
-                                                                <li key={idx}>- {type}</li>
-                                                            ))}
-                                                        </ul>
-                                                    </div>
-                                                )}
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            )}
-                        </div>
-                        <div className="text-sm prose prose-sm dark:prose-invert">
-                            <ReactMarkdown>{item.description}</ReactMarkdown>
-                        </div>
+        <div className="max-w-2xl backdrop-blur-lg mx-auto antialiased pt-4 relative">
+            {dummyContent.map((item, index) => (
+                <div key={`content-${index}`} className="mb-20 rounded-md p-4">
+                    <div className="flex flex-row items-center space-x-4 pb-4">
+                        <h2 className="bg-black text-white dark:bg-white dark:text-black rounded-full text-md w-fit px-4 py-1">
+                            {item.title}
+                        </h2>
                     </div>
-                ))}
-            </div>
+                    <div className="mb-6 py-10">
+                        <input
+                            type="text"
+                            placeholder="Country Code"
+                            value={countryCode}
+                            onChange={(e) => setCountryCode(e.target.value)}
+                            className="border border-gray-400 p-2 rounded w-full mb-4"
+                        />
+                        <input
+                            type="text"
+                            placeholder="City"
+                            value={city}
+                            onChange={(e) => setCity(e.target.value)}
+                            className="border border-gray-400 p-2 rounded w-full mb-4"
+                        />
+                        <input
+                            type="text"
+                            placeholder="Radius (optional)"
+                            value={radius}
+                            onChange={(e) => setRadius(e.target.value)}
+                            className="border border-gray-400 p-2 rounded w-full mb-4"
+                        />
+                        <button
+                            onClick={fetchServicePoints}
+                            className="bg-blue-500 text-white px-4 py-2 rounded"
+                            disabled={loading}
+                        >
+                            {loading ? (
+                                <div className="flex items-center">
+                                    <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
+                                        <circle
+                                            className="opacity-25"
+                                            cx="12"
+                                            cy="12"
+                                            r="10"
+                                            stroke="currentColor"
+                                            strokeWidth="4"
+                                        ></circle>
+                                        <path
+                                            className="opacity-75"
+                                            fill="currentColor"
+                                            d="M4 12a8 8 0 018-8V0C6.477 0 0 6.477 0 12h4z"
+                                        ></path>
+                                    </svg>
+                                    Loading...
+                                </div>
+                            ) : (
+                                'Search'
+                            )}
+                        </button>
+                        {error && <p className="mt-4 text-red-500">{error}</p>}
+                        {servicePoints.length > 0 && (
+                            <div className="mt-4 bg-gray-100 p-4 rounded">
+                                <h3 className="text-lg font-semibold">Service Points</h3>
+                                <ul>
+                                    {servicePoints.map((point, index) => (
+                                        <li key={index}>
+                                            <div
+                                                className="cursor-pointer flex justify-between items-center"
+                                                onClick={() => toggleDetails(index)}
+                                            >
+                                                <span>{point.name || 'Unnamed Location'} - {point.place.address?.addressLocality}</span>
+                                                <span>{expandedIndex === index ? '▲' : '▼'}</span>
+                                            </div>
+                                            {expandedIndex === index && (
+                                                <div className="pl-4">
+                                                    <p><strong>Address:</strong> {point.place.address.streetAddress}, {point.place.address.postalCode} {point.place.address.addressLocality}, {point.place.address.countryCode}</p>
+                                                    <p><strong>Distance:</strong> {point.distance} meters</p>
+                                                    <p><strong>Opening Hours:</strong></p>
+                                                    <ul>
+                                                        {point.openingHours.map((hours, idx) => (
+                                                            <li key={idx}>- {hours.dayOfWeek}: {hours.opens} - {hours.closes}</li>
+                                                        ))}
+                                                    </ul>
+                                                    <p><strong>Service Types:</strong></p>
+                                                    <ul>
+                                                        {point.serviceTypes.map((type, idx) => (
+                                                            <li key={idx}>- {type}</li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+                                            )}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+                    </div>
+                    <div className="text-sm prose prose-sm dark:prose-invert">
+                        <ReactMarkdown>{item.description}</ReactMarkdown>
+                    </div>
+                </div>
+            ))}
+        </div>
     );
 };
