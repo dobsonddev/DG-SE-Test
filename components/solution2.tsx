@@ -63,9 +63,9 @@ interface ServicePoint {
 }
 
 export const Solution2 = () => {
-    const [countryCode, setCountryCode] = useState('');
-    const [city, setCity] = useState('');
-    const [radius, setRadius] = useState('');
+    const [countryCode, setCountryCode] = useState('DE');
+    const [city, setCity] = useState('Berlin');
+    const [radius, setRadius] = useState('2000');
     const [servicePoints, setServicePoints] = useState<ServicePoint[]>([]);
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
@@ -160,7 +160,7 @@ export const Solution2 = () => {
                         {error && <p className="mt-4 text-red-500">{error}</p>}
                         {servicePoints.length > 0 && (
                             <div className="mt-4 bg-gray-100 p-4 rounded">
-                                <h3 className="text-lg font-semibold">Service Points</h3>
+                                <h3 className="text-lg font-semibold">Service Points (sorted: Nearest first)</h3>
                                 <ul>
                                     {servicePoints.map((point, index) => (
                                         <li key={index}>
@@ -168,7 +168,7 @@ export const Solution2 = () => {
                                                 className="cursor-pointer flex justify-between items-center"
                                                 onClick={() => toggleDetails(index)}
                                             >
-                                                <span>{point.name || 'Unnamed Location'} - {point.place.address?.addressLocality}</span>
+                                                <span>{point.name || 'Postbox'} - {point.place.address?.addressLocality}</span>
                                                 <span>{expandedIndex === index ? '▲' : '▼'}</span>
                                             </div>
                                             {expandedIndex === index && (
@@ -177,10 +177,14 @@ export const Solution2 = () => {
                                                     <p><strong>Distance:</strong> {point.distance} meters</p>
                                                     <p><strong>Opening Hours:</strong></p>
                                                     <ul>
-                                                        {point.openingHours.map((hours, idx) => (
-                                                            <li key={idx}>- {hours.dayOfWeek}: {hours.opens} - {hours.closes}</li>
-                                                        ))}
+                                                        {point.openingHours.map((hours, idx) => {
+                                                            const dayOfWeek = hours.dayOfWeek.split('/').pop(); // Extract the day name
+                                                            return (
+                                                                <li key={idx}>- {dayOfWeek}: {hours.opens} - {hours.closes}</li>
+                                                            );
+                                                        })}
                                                     </ul>
+
                                                     <p><strong>Service Types:</strong></p>
                                                     <ul>
                                                         {point.serviceTypes.map((type, idx) => (

@@ -16,9 +16,10 @@ export async function GET(request: Request, { params }: { params: { trackingNumb
             }
         );
 
+        console.log('Received response from DHL API:', JSON.stringify(response.data, null, 2));
+
         const trackingData = response.data.shipments[0];
-        const lastEvent = trackingData.events[trackingData.events.length - 1];
-        return NextResponse.json(lastEvent);
+        return NextResponse.json(trackingData);
     } catch (error) {
         if (axios.isAxiosError(error)) {
             const status = error.response?.status || 500;
