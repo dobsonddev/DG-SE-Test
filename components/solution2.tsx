@@ -113,21 +113,21 @@ export const Solution2 = () => {
                             placeholder="Country Code"
                             value={countryCode}
                             onChange={(e) => setCountryCode(e.target.value)}
-                            className="border border-gray-400 p-2 rounded w-full mb-4"
+                            className="border text-neutral-600 border-gray-400 p-2 rounded w-full mb-4"
                         />
                         <input
                             type="text"
                             placeholder="City"
                             value={city}
                             onChange={(e) => setCity(e.target.value)}
-                            className="border border-gray-400 p-2 rounded w-full mb-4"
+                            className="border text-neutral-600 border-gray-400 p-2 rounded w-full mb-4"
                         />
                         <input
                             type="text"
                             placeholder="Radius (optional)"
                             value={radius}
                             onChange={(e) => setRadius(e.target.value)}
-                            className="border border-gray-400 p-2 rounded w-full mb-4"
+                            className="border text-neutral-600 border-gray-400 p-2 rounded w-full mb-4"
                         />
                         <button
                             onClick={fetchServicePoints}
@@ -159,7 +159,7 @@ export const Solution2 = () => {
                         </button>
                         {error && <p className="mt-4 text-red-500">{error}</p>}
                         {servicePoints.length > 0 && (
-                            <div className="mt-4 bg-gray-100 p-4 rounded">
+                            <div className="mt-4 bg-gray-100 dark:bg-gray-600 p-4 rounded">
                                 <h3 className="text-lg font-semibold">Service Points (sorted: Nearest first)</h3>
                                 <ul>
                                     {servicePoints.map((point, index) => (

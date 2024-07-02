@@ -111,7 +111,7 @@ export const Solution1 = () => {
                             placeholder="Enter tracking number"
                             value={trackingNumber}
                             onChange={(e) => setTrackingNumber(e.target.value)}
-                            className="border border-gray-400 p-2 rounded w-full mb-4"
+                            className="border text-neutral-600 border-gray-400 p-2 rounded w-full mb-4"
                         />
                         <button
                             onClick={fetchTrackingInfo}
