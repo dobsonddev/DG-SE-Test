@@ -17,9 +17,9 @@ export default function Home() {
             <Background />
             <ContainerWithCursor className="flex min-h-screen flex-col items-center justify-between">
                 <div className="relative z-20 py-10 md:pt-20 backdrop-blur-lg">
-                    <Heading as="h1">SE Technical Test Responses</Heading>
+                    <Heading as="h1">SE Technical Test Solutions (DG)</Heading>
                     <Subheading className="text-center">
-                        Please see below for functional solutions to tasks 1 and 2. Built using Next.js (App router, v14), TailwindCSS/ReactMarkdown for styling, and Axios as our HTTP client for sending requests to external APIs (DHL's API, in this case).
+                        Built using Next.js (App router, v14), TailwindCSS/ReactMarkdown for styling, and Axios as our HTTP client for sending requests to external APIs (DHL's API, in this case).
                     </Subheading>
                     <Subheading className="text-center">
                         Built by: Dobson Dunavant
