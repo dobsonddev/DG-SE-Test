@@ -11,6 +11,12 @@ const dummyContent = [
 ### Overview
 This component allows users to find DHL service points within a specified radius around a given city. Users can input a country code, city name, and an optional radius to search for service points.
 
+### Example Usage
+1. Enter country code: \`DE\`
+2. Enter city name: \`Berlin\`
+3. Enter radius: \`2000\` (Optional. 5000 by default.)
+4. Click 'Search'
+
 ### Features
 - **Input Fields**: Allows users to enter the country code, city name, and radius.
 - **Search Button**: Initiates the search process.
@@ -31,12 +37,6 @@ This component allows users to find DHL service points within a specified radius
 1. **Enter country code**, city name, and an optional radius in the input fields.
 2. **Click the 'Search' button** to fetch service point details.
 3. **View the list of service points** or any error messages.
-
-### Example Usage
-1. Enter country code: \`DE\`
-2. Enter city name: \`Berlin\`
-3. Enter radius: \`5000\`
-4. Click 'Search'
 
         `,
         image: null

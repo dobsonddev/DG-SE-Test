@@ -12,6 +12,11 @@ const dummyContent = [
 ### Overview
 This component allows users to track DHL shipments using the \`Shipment Tracking-Unified\` API. Users can input a tracking number to retrieve the latest tracking event for a shipment. The implementation includes error handling to show detailed error messages to the user.
 
+### Example Usage
+1. Enter tracking number: \`7777777770\`
+2. Click ‘Track’
+3. \`Status 404: No Result Found...\` is the expected response as this is not a currently active tracking number.
+
 ### Features
 - **Input Field**: Allows users to enter a tracking number.
 - **Track Button**: Initiates the tracking process.
@@ -32,11 +37,6 @@ This component allows users to track DHL shipments using the \`Shipment Tracking
 1. **Enter a tracking number** in the input field.
 2. **Click the 'Track' button** to fetch tracking details.
 3. **View the latest tracking event** or any error messages.
-
-### Example Usage
-1. Enter tracking number: \`7777777770\`
-2. Click ‘Track’
-
         `
     }
 ];
