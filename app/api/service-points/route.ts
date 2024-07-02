@@ -24,8 +24,7 @@ export async function GET(request: Request) {
             }
         );
 
-        // Debugging log: Print the entire response object
-        console.log('Received response from DHL API:', JSON.stringify(response.data, null, 2));
+        // console.log('Received response from DHL API:', JSON.stringify(response.data, null, 2));
 
         return NextResponse.json(response.data);
     } catch (error) {

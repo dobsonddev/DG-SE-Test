@@ -16,7 +16,7 @@ export async function GET(request: Request, { params }: { params: { trackingNumb
             }
         );
 
-        console.log('Received response from DHL API:', JSON.stringify(response.data, null, 2));
+        // console.log('Received response from DHL API:', JSON.stringify(response.data, null, 2));
 
         const trackingData = response.data.shipments[0];
         return NextResponse.json(trackingData);

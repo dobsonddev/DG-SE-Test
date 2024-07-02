@@ -1,10 +1,9 @@
 "use client";
 
 import React, { useState, ComponentType } from 'react';
-import CustomCursor from './ui/custom-cursor'; // Adjust the import path as necessary
+import CustomCursor from './ui/custom-cursor';
 
 interface WithCustomCursorProps {
-    // Define any additional props if needed
 }
 
 const withCustomCursor = <P extends object>(WrappedComponent: ComponentType<P>) => {
