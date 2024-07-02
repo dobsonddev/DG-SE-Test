@@ -99,7 +99,7 @@ export const Solution2 = () => {
     };
 
     return (
-        <div className="max-w-2xl backdrop-blur-lg mx-auto antialiased pt-4 relative">
+        <div className="max-w-2xl dark:bg-neutral-800 p-2 rounded backdrop-blur-lg mx-auto antialiased pt-2 mt-8 relative">
             {dummyContent.map((item, index) => (
                 <div key={`content-${index}`} className="mb-20 rounded-md p-4">
                     <div className="flex flex-row items-center space-x-4 pb-4">
@@ -107,7 +107,7 @@ export const Solution2 = () => {
                             {item.title}
                         </h2>
                     </div>
-                    <div className="mb-6 py-10">
+                    <div className="mb-6 dark:bg-neutral-700 p-6 rounded py-10">
                         <input
                             type="text"
                             placeholder="Country Code"
@@ -159,7 +159,7 @@ export const Solution2 = () => {
                         </button>
                         {error && <p className="mt-4 text-red-500">{error}</p>}
                         {servicePoints.length > 0 && (
-                            <div className="mt-4 bg-gray-100 dark:bg-gray-600 p-4 rounded">
+                            <div className="mt-4 bg-gray-100 dark:bg-neutral-700 p-4 rounded">
                                 <h3 className="text-lg font-semibold">Service Points (sorted: Nearest first)</h3>
                                 <ul>
                                     {servicePoints.map((point, index) => (

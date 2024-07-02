@@ -97,15 +97,15 @@ export const Solution1 = () => {
     };
 
     return (
-        <div className="max-w-2xl backdrop-blur-lg mx-auto antialiased pt-4 relative">
+        <div className="max-w-2xl dark:bg-neutral-800 p-2 rounded backdrop-blur-lg mx-auto antialiased pt-2 relative">
             {dummyContent.map((item, index) => (
                 <div key={`content-${index}`} className="mb-20 rounded-md p-4">
                     <div className="flex flex-row items-center space-x-4 pb-4">
-                        <h2 className="bg-black text-white dark:bg-white dark:text-black rounded-full text-md w-fit px-4 py-1">
+                        <h2 className="bg-black text-white dark:bg-white dark:text-black rounded-full text-lg w-fit px-4 py-1">
                             {item.title}
                         </h2>
                     </div>
-                    <div className="my-10">
+                    <div className="my-10 dark:bg-neutral-700 backdrop-blur-lg p-6 rounded">
                         <input
                             type="text"
                             placeholder="Enter tracking number"
@@ -143,7 +143,7 @@ export const Solution1 = () => {
                         </button>
                         {error && <p className="mt-4 text-red-500">{error}</p>}
                         {shipment && (
-                            <div className="mt-4 bg-gray-100 p-4 rounded">
+                            <div className="mt-4 bg-gray-100 dark:bg-neutral-700 p-4 rounded">
                                 <h3 className="text-lg font-semibold">Tracking Information</h3>
                                 <div className="mt-4">
                                     <h4 className="text-md font-semibold">Latest Tracking Event</h4>
