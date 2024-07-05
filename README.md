@@ -19,8 +19,8 @@ These functions (both GET api calls), are being implemented and called in the be
 To run locally, 
 1. Create your own `.env.local` file
 2. Copy the contents of the existing `env.example` into it
-3. Crete an `App` here [DHL API key here](https://developer.dhl.com/), this will generate an API key for you
-4. Replace the `your-api-key-here` value in your `.env.local` file with it
+3. Crete an DHL API `App` [here](https://developer.dhl.com/), this will generate an API key for you. Copy it to your clipboard.
+4. Replace the `your-api-key-here` value in your `.env.local` file with this DHL API Key
 5. In this same developer portal, sign up for both of the below APIs. This will allow DHL's system to authenticate and authorize your requests by seeing that your API Key has permissions to these endpoints:
   1. `Location Finder - Unified`
   2. [`Shipment Tracking - Unified`](https://developer.dhl.com/api-reference/shipment-tracking)
