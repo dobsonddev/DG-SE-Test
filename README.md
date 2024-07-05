@@ -1,6 +1,6 @@
 This is a [Next.js](https://nextjs.org/) project.
 
-## [Live Demo + Explanation Here](https://dg-se-test.vercel.app/) (click)
+## [Live Demo + Explanation Here (click)](https://dg-se-test.vercel.app/)
 
 ## Quick overview
 
